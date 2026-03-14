@@ -30,28 +30,12 @@ jobs:
           cache: maven
 
       - name: Install dependencies
-        run: |
-          if [ -f "pom.xml" ]; then
-            mvn -B -ntp dependency:resolve
-          elif [ -f "build.gradle" ] || [ -f "build.gradle.kts" ]; then
-            chmod +x gradlew
-            ./gradlew dependencies
-          else
-            echo "No se encontró pom.xml ni build.gradle"
-            exit 1
-          fi
+        working-directory: trabajopractico
+        run: ./mvnw -B -ntp dependency:resolve
 
       - name: Build and test
-        run: |
-          if [ -f "pom.xml" ]; then
-            mvn -B -ntp clean verify
-          elif [ -f "build.gradle" ] || [ -f "build.gradle.kts" ]; then
-            chmod +x gradlew
-            ./gradlew clean build
-          else
-            echo "No se encontró pom.xml ni build.gradle"
-            exit 1
-          fi
+        working-directory: trabajopractico
+        run: ./mvnw -B -ntp clean verify
 
   cd-deploy:
     name: Continuous Deployment
@@ -69,16 +53,8 @@ jobs:
           cache: maven
 
       - name: Package artifact
-        run: |
-          if [ -f "pom.xml" ]; then
-            mvn -B -ntp clean package -DskipTests
-          elif [ -f "build.gradle" ] || [ -f "build.gradle.kts" ]; then
-            chmod +x gradlew
-            ./gradlew clean bootJar -x test
-          else
-            echo "No se encontró pom.xml ni build.gradle"
-            exit 1
-          fi
+        working-directory: trabajopractico
+        run: ./mvnw -B -ntp clean package -DskipTests
 
       - name: Simulate deployment
         run: |
