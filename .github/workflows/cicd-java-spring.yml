@@ -1,0 +1,86 @@
+name: Spring Boot CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - desarrollo
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+
+jobs:
+  ci-build-and-test:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Install dependencies
+        run: |
+          if [ -f "pom.xml" ]; then
+            mvn -B -ntp dependency:resolve
+          elif [ -f "build.gradle" ] || [ -f "build.gradle.kts" ]; then
+            chmod +x gradlew
+            ./gradlew dependencies
+          else
+            echo "No se encontró pom.xml ni build.gradle"
+            exit 1
+          fi
+
+      - name: Build and test
+        run: |
+          if [ -f "pom.xml" ]; then
+            mvn -B -ntp clean verify
+          elif [ -f "build.gradle" ] || [ -f "build.gradle.kts" ]; then
+            chmod +x gradlew
+            ./gradlew clean build
+          else
+            echo "No se encontró pom.xml ni build.gradle"
+            exit 1
+          fi
+
+  cd-deploy:
+    name: Continuous Deployment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.base_ref == 'main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Package artifact
+        run: |
+          if [ -f "pom.xml" ]; then
+            mvn -B -ntp clean package -DskipTests
+          elif [ -f "build.gradle" ] || [ -f "build.gradle.kts" ]; then
+            chmod +x gradlew
+            ./gradlew clean bootJar -x test
+          else
+            echo "No se encontró pom.xml ni build.gradle"
+            exit 1
+          fi
+
+      - name: Simulate deployment
+        run: |
+          echo "🚀 Deploying Spring Boot application to production..."
+          echo "✅ Deployment successful!"
