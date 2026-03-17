@@ -8,7 +8,10 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import tools.jackson.databind.ObjectMapper;;
+
 public class ClientServerC {
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) throws Exception {
 
@@ -67,15 +70,21 @@ public class ClientServerC {
                 socket.getOutputStream(), true)
         ) {
 
-            String msg = in.readLine();
+            // System.out.println("JSON recibido: ");
+            String json = in.readLine();
 
-            if (msg == null) {
+            if (json == null) {
                 return;
             }
 
-            System.out.println("Mensaje recibido: " + msg);
+            // Deserializar el JSON al recibirlo
+            Message message = mapper.readValue(json, Message.class);
+            System.out.println("Mensaje recibido: " + message.msg +
+                " desde " + message.from);
 
-            out.println("ACK " + msg);
+            Message response = new Message("ACK " + message.msg, String.valueOf(socket.getLocalPort()));
+            String responseJson = mapper.writeValueAsString(response);
+            out.println(responseJson);
 
         } catch (IOException e) {
 
@@ -106,13 +115,18 @@ public class ClientServerC {
 
                 System.out.println("Conectado a " + host + ":" + port);
 
-                String msg = "Hola desde " + socket.getLocalPort();
+                // Serializar el mensaje a JSON
+                Message message = new Message("Hola", String.valueOf(socket.getLocalPort()));
+                // System.out.println("JSON enviado: ");
+                String json = mapper.writeValueAsString(message);
 
-                out.println(msg);
+                out.println(json);
 
                 String response = in.readLine();
 
-                System.out.println("Respuesta: " + response);
+                Message responseMsg = mapper.readValue(response, Message.class);
+                System.out.println("Respuesta: " + responseMsg.msg + 
+                    " desde " + responseMsg.from);
                 System.out.println("Cliente cerrado");
 
                 break;
