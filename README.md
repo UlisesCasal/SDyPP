@@ -1,4 +1,4 @@
-# SDyPP — Hit #6: Comunicación gRPC con Protocol Buffers
+# SDyPP — Hit #8: Comunicación gRPC con Protocol Buffers
 
 ## Descripción
 
