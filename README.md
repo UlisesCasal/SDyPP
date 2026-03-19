@@ -71,29 +71,38 @@ Esto genera automáticamente las clases Protobuf y los stubs gRPC en `target/gen
 ./mvnw test
 ```
 
-Incluye un test de round-trip gRPC real (`grpcRoundTripEntreNodos`).
+Esto correrá todos los tests ubicados en `src/test`, incluyendo un test de round-trip gRPC real avanzado (`GrpcIntegrationTest`) que levanta el servidor y simula la comunicación para validar el éxito.
 
 ### Ejecutar la comunicación entre nodos
 
-En dos terminales:
+En dos terminales (si usas **Bash, Linux o macOS**):
 
 ```bash
 # Terminal 1 — Nodo D (escucha en 5054, envía a C en 5053)
 ./mvnw -q exec:java \
   -Dexec.mainClass="com.grupoamarillo.trabajopractico.ClientServerC" \
-  -Dexec.arguments="localhost:5054,localhost:5053,D,Hola desde D"
+  -Dexec.args="localhost:5054 localhost:5053 D 'Hola desde D'"
 
 # Terminal 2 — Nodo C (escucha en 5053, envía a D en 5054)
 ./mvnw -q exec:java \
   -Dexec.mainClass="com.grupoamarillo.trabajopractico.ClientServerC" \
-  -Dexec.arguments="localhost:5053,localhost:5054,C,Hola desde C"
+  -Dexec.args="localhost:5053 localhost:5054 C 'Hola desde C'"
 ```
 
-### Ejecutar el comparador JSON vs Protobuf
+> **Nota para usuarios de Windows (PowerShell / CMD):**
+> En Windows las terminales tienden a corromper los argumentos pasados por `-D`. Para solucionarlo, debes englobar la estructura de tu argumento `-D` en comillas así:
+> `mvn exec:java "-Dexec.mainClass=com.grupoamarillo.trabajopractico.ClientServerC" "-Dexec.args=localhost:5054 localhost:5053 D 'Hola Comando'"`
+
+### Ejecutar el benchmark: JSON vs Protobuf
+
+Ejecuta el servidor automáticamente y manda 200 mensajes midiendo tamaños de byte y latencias simulando a ambos nodos.
 
 ```bash
-./mvnw -q exec:java \
-  -Dexec.mainClass="com.grupoamarillo.trabajopractico.ComparadorJsonVsProtobuf"
+# Bash:
+./mvnw -q exec:java -Dexec.mainClass="com.grupoamarillo.trabajopractico.ComparadorJsonVsProtobuf"
+
+# Windows (PowerShell):
+mvn exec:java "-Dexec.mainClass=com.grupoamarillo.trabajopractico.ComparadorJsonVsProtobuf"
 ```
 
 ---
