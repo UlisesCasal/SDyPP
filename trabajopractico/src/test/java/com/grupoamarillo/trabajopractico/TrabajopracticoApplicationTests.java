@@ -1,6 +1,6 @@
 package com.grupoamarillo.trabajopractico;
 
-import com.grupoamarillo.trabajopractico.Servidor.ServidorB;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

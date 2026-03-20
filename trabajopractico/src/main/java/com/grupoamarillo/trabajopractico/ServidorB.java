@@ -1,7 +1,11 @@
-package com.grupoamarillo.trabajopractico.Servidor;
+package com.grupoamarillo.trabajopractico;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class ServidorB {
 
@@ -39,9 +43,9 @@ public class ServidorB {
                 servidor.close();
 
             } catch (IOException e) {
-                //e.printStackTrace();
+                // e.printStackTrace();
                 System.out.println("Error al conectar con el cliente: " + e.getMessage());
-                
+
             }
         }
     }
