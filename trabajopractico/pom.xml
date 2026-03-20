@@ -178,10 +178,42 @@
 				</configuration>
 				<executions>
 					<execution>
+						<id>protobuf-java</id>
+						<configuration>
+							<temporaryProtoFileDirectory>${project.build.directory}/protoc-dependencies-java</temporaryProtoFileDirectory>
+						</configuration>
 						<goals>
 							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>protobuf-grpc</id>
+						<configuration>
+							<temporaryProtoFileDirectory>${project.build.directory}/protoc-dependencies-grpc</temporaryProtoFileDirectory>
+						</configuration>
+						<goals>
 							<goal>compile-custom</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.6.0</version>
+				<executions>
+					<execution>
+						<id>add-protobuf-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/protobuf/java</source>
+								<source>${project.build.directory}/generated-sources/protobuf/grpc-java</source>
+							</sources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
