@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package comunicacion;
+
+option java_package = "com.grupoamarillo.trabajopractico.grpc";
+option java_outer_classname = "MensajeProto";
+
+// Servicio RPC entre los nodos C y D.
+service NodoService {
+  rpc Enviar (MensajeRequest) returns (MensajeResponse);
+}
+
+// Payload enviado por el cliente.
+message MensajeRequest {
+  string msg = 1;
+  string from = 2;
+}
+
+// Payload de respuesta del servidor.
+message MensajeResponse {
+  string msg = 1;
+  string from = 2;
+}
