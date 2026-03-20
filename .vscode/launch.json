@@ -1,0 +1,47 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ClienteA",
+            "request": "launch",
+            "mainClass": "com.grupoamarillo.trabajopractico.Cliente.ClienteA",
+            "projectName": "trabajopractico"
+        },
+        {
+            "type": "java",
+            "name": "ClientServerC Nodo1",
+            "request": "launch",
+            "mainClass": "com.grupoamarillo.trabajopractico.ClientServerC",
+            "projectName": "trabajopractico",
+            "args": "127.0.0.1:7000 127.0.0.1:7001"
+        },
+        {
+            "type": "java",
+            "name": "ClientServerC Nodo2",
+            "request": "launch",
+            "mainClass": "com.grupoamarillo.trabajopractico.ClientServerC",
+            "projectName": "trabajopractico",
+            "args": "127.0.0.1:7001 127.0.0.1:7000"
+        },
+        
+        {
+            "type": "java",
+            "name": "Spring Boot-TrabajopracticoApplication<trabajopractico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.grupoamarillo.trabajopractico.TrabajopracticoApplication",
+            "projectName": "trabajopractico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ],
+        "compounds": [
+        {
+            "name": "Dos Nodos",
+            "configurations": [
+                "ClientServerC Nodo1",
+                "ClientServerC Nodo2"
+            ]
+        }
+    ]
+}

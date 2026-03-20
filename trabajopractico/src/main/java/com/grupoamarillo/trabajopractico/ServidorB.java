@@ -1,6 +1,11 @@
-package com.grupoamarillo.trabajopractico.Servidor;
-import java.io.*;
-import java.net.*;
+package com.grupoamarillo.trabajopractico;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class ServidorB {
 
@@ -8,30 +13,31 @@ public class ServidorB {
         int puerto = 5001;
 
         try {
-            //Crea un nuevo ServerSocket, especificando q es local y en el puerto (escuchando)
+            // Crea un nuevo ServerSocket, especificando q es local y en el puerto
+            // (escuchando)
             ServerSocket servidor = new ServerSocket(puerto);
             System.out.println("Servidor B esperando conexión...");
 
-            //Acepta una conexión entrante del cliente
+            // Acepta una conexión entrante del cliente
             Socket cliente = servidor.accept(); // espera cliente
             System.out.println("Cliente conectado");
 
-            //Crea un BufferedReader para recibir datos del cliente a traves del socket
+            // Crea un BufferedReader para recibir datos del cliente a traves del socket
             BufferedReader entrada = new BufferedReader(
                     new InputStreamReader(cliente.getInputStream()));
-                
-            //Crea un PrintWriter para enviar datos al cliente a traves del socket
+
+            // Crea un PrintWriter para enviar datos al cliente a traves del socket
             PrintWriter salida = new PrintWriter(
                     cliente.getOutputStream(), true);
-                        
-            //Recibe el mensaje del cliente
+
+            // Recibe el mensaje del cliente
             String saludo = entrada.readLine();
             System.out.println("Cliente dice: " + saludo);
 
-            //Envía una respuesta al cliente
+            // Envía una respuesta al cliente
             salida.println("Hola A, te saluda B");
 
-            //Cierra el socket y el ServerSocket
+            // Cierra el socket y el ServerSocket
             cliente.close();
             servidor.close();
 
