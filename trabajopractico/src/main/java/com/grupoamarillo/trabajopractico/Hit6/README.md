@@ -19,10 +19,7 @@ lsof -nP -iTCP:8080 -sTCP:LISTEN
 
 ```bash
 cd trabajopractico
-mkdir -p out/hit6
-javac -d out/hit6 \
-  src/main/java/com/grupoamarillo/trabajopractico/Hit6/Servidor/NodeD.java \
-  src/main/java/com/grupoamarillo/trabajopractico/Hit6/Cliente/NodeC.java
+./mvnw -q clean compile
 ```
 
 ## Ejecutar
@@ -31,21 +28,29 @@ Terminal 1 (NodeD):
 
 ```bash
 cd trabajopractico
-java -cp out/hit6 com.grupoamarillo.trabajopractico.Hit6.Servidor.NodeD
+./mvnw -q \
+  -Dexec.mainClass=com.grupoamarillo.trabajopractico.Hit6.Servidor.NodeD \
+  org.codehaus.mojo:exec-maven-plugin:3.6.1:java
 ```
 
 Terminal 2 (NodeC):
 
 ```bash
 cd trabajopractico
-java -cp out/hit6 com.grupoamarillo.trabajopractico.Hit6.Cliente.NodeC 127.0.0.1 9000
+./mvnw -q \
+  -Dexec.mainClass=com.grupoamarillo.trabajopractico.Hit6.Cliente.NodeC \
+  -Dexec.args="127.0.0.1 9000" \
+  org.codehaus.mojo:exec-maven-plugin:3.6.1:java
 ```
 
 Terminal 3 (otro NodeC):
 
 ```bash
 cd trabajopractico
-java -cp out/hit6 com.grupoamarillo.trabajopractico.Hit6.Cliente.NodeC 127.0.0.1 9000
+./mvnw -q \
+  -Dexec.mainClass=com.grupoamarillo.trabajopractico.Hit6.Cliente.NodeC \
+  -Dexec.args="127.0.0.1 9000" \
+  org.codehaus.mojo:exec-maven-plugin:3.6.1:java
 ```
 
 ## Health check
