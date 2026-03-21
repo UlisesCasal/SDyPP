@@ -8,9 +8,9 @@
 
 ```bash
 cd trabajopractico
-mkdir -p out/hit3 out/hit2
+mkdir -p out/hit3 out/hit3
 javac -d out/hit3 src/main/java/com/grupoamarillo/trabajopractico/Hit3/ServidorB.java
-javac -d out/hit2 src/main/java/com/grupoamarillo/trabajopractico/Hit3/ClienteA.java
+javac -d out/hit3 src/main/java/com/grupoamarillo/trabajopractico/Hit3/ClienteA.java
 ```
 
 ## Ejecutar
