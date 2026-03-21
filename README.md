@@ -51,14 +51,14 @@ cd trabajopractico
 
 ## README por Hit
 
-- [Hit-1 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-1/README.md)
-- [Hit-2 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-2/README.md)
-- [Hit-3 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-3/README.md)
-- [Hit-4 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-4/README.md)
-- [Hit-5 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-5/README.md)
-- [Hit-6 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-6/README.md)
-- [Hit-7 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-7/README.md)
-- [Hit-8 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit-8/README.md)
+- [Hit-1 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit1/README.md)
+- [Hit-2 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit2/README.md)
+- [Hit-3 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit3/README.md)
+- [Hit-4 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit4/README.md)
+- [Hit-5 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit5/README.md)
+- [Hit-6 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit6/README.md)
+- [Hit-7 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit7/README.md)
+- [Hit-8 README](trabajopractico/src/main/java/com/grupoamarillo/trabajopractico/Hit8/README.md)
 
 ## Nota útil
 
