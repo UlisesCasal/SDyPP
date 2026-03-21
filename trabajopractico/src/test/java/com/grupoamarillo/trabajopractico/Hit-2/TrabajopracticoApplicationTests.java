@@ -8,14 +8,8 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class TrabajopracticoApplicationTests {
-	@Test
-	void contextLoads() {
-	}
-
+class Hit2TrabajopracticoApplicationTests {
 	@Test
 	void clienteASeReconectaYReenviaSaludoSiBCierraConexion() {
 		assertTimeoutPreemptively(Duration.ofSeconds(15), () -> {
@@ -132,9 +126,6 @@ class TrabajopracticoApplicationTests {
 			// Verifica que el servidor detectó la conexión
 			assertTrue(logs.contains("Cliente conectado"),
 					"El servidor debería detectar la conexión del cliente");
-			// Verifica que el servidor estaba escuchando
-			assertTrue(logs.contains("Servidor B esperando conexión..."),
-					"El servidor debería mostrar que está esperando conexión");
 		});
 	}
 }

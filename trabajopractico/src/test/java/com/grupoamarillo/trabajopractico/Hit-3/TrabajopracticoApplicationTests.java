@@ -2,7 +2,6 @@ package com.grupoamarillo.trabajopractico;
 
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,12 +13,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@SpringBootTest
-class TrabajopracticoApplicationTests {
-	@Test
-	void contextLoads() {
-	}
-
+class Hit3TrabajopracticoApplicationTests {
 	@Test
 	void servidorBSigueActivoSiASeDesconecta() {
 		assertTimeoutPreemptively(Duration.ofSeconds(12), () -> {

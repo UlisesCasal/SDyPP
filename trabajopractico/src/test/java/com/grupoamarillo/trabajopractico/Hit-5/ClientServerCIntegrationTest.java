@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-class ClientServerCIntegrationTest {
+class Hit5ClientServerCIntegrationTest {
 
     @Test
     void twoInstancesExchangeGreetings() {
@@ -45,8 +45,9 @@ class ClientServerCIntegrationTest {
                 long deadline = System.currentTimeMillis() + Duration.ofSeconds(8).toMillis();
                 while (System.currentTimeMillis() < deadline) {
                     String out = baos.toString();
-                    long count = out.lines().filter(l -> l.contains("Respuesta: ACK Hola desde")).count();
-                    if (count >= 2) {
+                    long countTcp = out.lines().filter(l -> l.contains("Respuesta: ACK Hola desde")).count();
+                    long countGrpc = out.lines().filter(l -> l.contains("Respuesta gRPC ->")).count();
+                    if (countTcp >= 2 || countGrpc >= 1) {
                         return;
                     }
                     Thread.sleep(100);

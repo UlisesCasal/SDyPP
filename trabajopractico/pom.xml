@@ -126,15 +126,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>**/TrabajopracticoApplicationTests.java</exclude>
-						<exclude>**/Hit-1/**</exclude>
-						<exclude>**/Hit-2/**</exclude>
-						<exclude>**/Hit-3/**</exclude>
-						<exclude>**/Hit-4/**</exclude>
-						<exclude>**/Hit-5/**</exclude>
-						<exclude>**/Hit-6/**</exclude>
-					</excludes>
+					<forkCount>1</forkCount>
+					<reuseForks>false</reuseForks>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -142,24 +135,14 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<excludes>
-						<exclude>**/Hit-1/**</exclude>
-						<exclude>**/Hit-2/**</exclude>
-						<exclude>**/Hit-3/**</exclude>
-						<exclude>**/Hit-4/**</exclude>
+						<exclude>**/Hit-2/ServidorB.java</exclude>
 						<exclude>**/Hit-5/**</exclude>
 						<exclude>**/Hit-6/**</exclude>
 						<exclude>**/Hit-7/**</exclude>
-						<exclude>com/grupoamarillo/trabajopractico/TrabajopracticoApplication.java</exclude>
+						<exclude>com/grupoamarillo/trabajopractico/Hit-8/ClientServerC.java</exclude>
+						<exclude>com/grupoamarillo/trabajopractico/Hit-8/Message.java</exclude>
+						<exclude>com/grupoamarillo/trabajopractico/Hit-8/TrabajopracticoApplication.java</exclude>
 					</excludes>
-					<testExcludes>
-						<testExclude>**/Hit-1/**</testExclude>
-						<testExclude>**/Hit-2/**</testExclude>
-						<testExclude>**/Hit-3/**</testExclude>
-						<testExclude>**/Hit-4/**</testExclude>
-						<testExclude>**/Hit-5/**</testExclude>
-						<testExclude>**/Hit-6/**</testExclude>
-						<testExclude>**/Hit-7/**</testExclude>
-					</testExcludes>
 				</configuration>
 			</plugin>
 			<plugin>
