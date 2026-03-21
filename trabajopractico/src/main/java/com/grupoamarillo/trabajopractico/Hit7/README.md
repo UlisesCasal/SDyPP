@@ -48,6 +48,11 @@ Terminal 3 (otro NodeC):
 cd trabajopractico
 java -cp out/hit7 com.grupoamarillo.trabajopractico.Hit7.Cliente.NodeC 127.0.0.1 9000
 ```
+Terminal 4 (Consulta a Health):
+
+```bash
+curl http://localhost:8080/health
+```
 
 ## Tests del Hit
 
